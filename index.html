@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyclone Cycles — Houston's Neighborhood Bike Shop</title>
+  <meta name="description" content="Cyclone Cycles — repairs, new & used bikes, parts, and Sunday community events. Now at 4215 Bellaire Blvd, Houston TX 77025. Call (713) 668-2104." />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:  #1e4d2b;
+      --green2: #2a6b3c;
+      --amber:  #d4830a;
+      --gold:   #f0a500;
+      --cream:  #fdf8ee;
+      --white:  #ffffff;
+      --text:   #1a1a1a;
+      --muted:  #555;
+      --radius: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      background: var(--green);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .nav-brand {
+      color: var(--gold);
+      font-size: 1.3rem;
+      font-weight: bold;
+      letter-spacing: 0.03em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--cream);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── Hero ── */
+    #hero {
+      background: var(--green);
+      color: var(--white);
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .new-location-banner {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--green);
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1.1rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(240,165,0,0.5); }
+      50%       { box-shadow: 0 0 0 8px rgba(240,165,0,0); }
+    }
+    .hero-svg {
+      width: min(320px, 85vw);
+      margin: 0 auto 1.5rem;
+      display: block;
+    }
+    #hero h1 {
+      font-size: clamp(2.2rem, 7vw, 3.8rem);
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      color: var(--gold);
+      text-shadow: 1px 2px 6px rgba(0,0,0,0.4);
+    }
+    #hero p.tagline {
+      font-size: 1.1rem;
+      color: #cfe8d5;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .hero-address {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: var(--radius);
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      margin-bottom: 1.75rem;
+      font-size: 1rem;
+    }
+    .hero-address strong { color: var(--gold); display: block; font-size: 1.2rem; }
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--green);
+      box-shadow: 0 4px 14px rgba(240,165,0,0.4);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 18px rgba(240,165,0,0.55); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* ── Section commons ── */
+    section { padding: 4rem 1.5rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--amber);
+      font-family: Arial, sans-serif;
+      margin-bottom: 0.4rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      color: var(--green);
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 0 0 2rem;
+    }
+
+    /* ── Map ── */
+    #location { background: var(--white); }
+    .map-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      margin-top: 1.5rem;
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 360px;
+      border: none;
+      display: block;
+    }
+    .location-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    .location-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      border-left: 4px solid var(--gold);
+    }
+    .location-card h3 {
+      color: var(--green);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.03em;
+    }
+    .location-card p, .location-card a {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .location-card a:hover { color: var(--amber); }
+
+    /* ── Services ── */
+    #services { background: var(--cream); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.25rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .service-card h3 {
+      color: var(--green);
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* ── Sunday events ── */
+    #sunday {
+      background: var(--green);
+      color: var(--white);
+    }
+    #sunday .section-label { color: var(--gold); }
+    #sunday h2 { color: var(--white); }
+    .sunday-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (max-width: 640px) {
+      .sunday-inner { grid-template-columns: 1fr; }
+    }
+    .sunday-text p {
+      color: #cfe8d5;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+    .sunday-highlight {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--gold);
+      line-height: 1.7;
+    }
+    .sunday-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .event-badge {
+      background: rgba(240,165,0,0.15);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .event-badge span:first-child { font-size: 1.8rem; }
+    .event-badge-text strong { color: var(--gold); display: block; }
+    .event-badge-text small { color: #cfe8d5; font-size: 0.85rem; }
+
+    /* ── About ── */
+    #about { background: var(--white); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    @media (max-width: 600px) {
+      .about-inner { grid-template-columns: 1fr; }
+    }
+    .about-mark-icon {
+      background: var(--green);
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      margin: 0 auto;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+    .award-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fff8e1;
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 0.5rem 0.9rem;
+      font-size: 0.85rem;
+      color: var(--amber);
+      font-family: Arial, sans-serif;
+      margin-top: 1rem;
+    }
+    .traits {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .trait {
+      background: #e8f4ec;
+      color: var(--green2);
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.85rem;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── Photos placeholder ── */
+    #gallery { background: var(--cream); }
+    .gallery-placeholder {
+      background: var(--white);
+      border: 2px dashed #ccc;
+      border-radius: var(--radius);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+    .gallery-placeholder p { font-size: 0.95rem; margin-top: 0.5rem; }
+
+    /* ── Reviews CTA ── */
+    #reviews {
+      background: var(--amber);
+      color: var(--white);
+      text-align: center;
+    }
+    #reviews h2 { color: var(--white); }
+    #reviews p { font-size: 1.1rem; margin-bottom: 1.75rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .stars { font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: 0.1em; }
+    .btn-white {
+      background: var(--white);
+      color: var(--amber);
+      font-weight: bold;
+    }
+    .btn-white:hover { background: #fff8e1; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--green);
+      color: #cfe8d5;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      max-width: 760px;
+      margin: 0 auto 2rem;
+      text-align: left;
+    }
+    footer h3 {
+      color: var(--gold);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      font-family: Arial, sans-serif;
+    }
+    footer p, footer a {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: #cfe8d5;
+    }
+    footer a:hover { color: var(--gold); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 1.25rem;
+      font-size: 0.8rem;
+      color: rgba(207,232,213,0.6);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <span class="nav-brand">Cyclone Cycles</span>
+  <ul class="nav-links">
+    <li><a href="#location">Find Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#sunday">Sundays</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="hero">
+  <div class="new-location-banner">&#x1F4CD; New Location — We Moved!</div>
+
+  <!-- SVG Bicycle -->
+  <svg class="hero-svg" viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Rear wheel -->
+    <circle cx="90" cy="110" r="42" stroke="#f0a500" stroke-width="6"/>
+    <circle cx="90" cy="110" r="8" fill="#f0a500"/>
+    <!-- Front wheel -->
+    <circle cx="230" cy="110" r="42" stroke="#f0a500" stroke-width="6"/>
+    <circle cx="230" cy="110" r="8" fill="#f0a500"/>
+    <!-- Spokes rear -->
+    <line x1="90" y1="68" x2="90" y2="152" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
+    <line x1="48" y1="110" x2="132" y2="110" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
+    <line x1="60" y1="80" x2="120" y2="140" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
+    <line x1="120" y1="80" x2="60" y2="140" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
+    <!-- Spokes front -->
+    <line x1="230" y1="68" x2="230" y2="152" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
+    <line x1="188" y1="110" x2="272" y2="110" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
+    <line x1="200" y1="80" x2="260" y2="140" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
+    <line x1="260" y1="80" x2="200" y2="140" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
+    <!-- Frame -->
+    <polyline points="90,110 140,55 195,110" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
+    <line x1="140" y1="55" x2="230" y2="110" stroke="white" stroke-width="6"/>
+    <line x1="165" y1="110" x2="140" y2="55" stroke="white" stroke-width="6"/>
+    <!-- Seat tube -->
+    <line x1="165" y1="110" x2="160" y2="75" stroke="white" stroke-width="6"/>
+    <!-- Seat -->
+    <line x1="148" y1="73" x2="172" y2="73" stroke="#f0a500" stroke-width="5" stroke-linecap="round"/>
+    <!-- Handlebar stem -->
+    <line x1="220" y1="75" x2="230" y2="55" stroke="white" stroke-width="5"/>
+    <!-- Handlebars -->
+    <line x1="215" y1="53" x2="245" y2="53" stroke="#f0a500" stroke-width="5" stroke-linecap="round"/>
+    <!-- Crank/pedals -->
+    <circle cx="165" cy="110" r="10" stroke="#f0a500" stroke-width="4" fill="var(--green)"/>
+    <line x1="155" y1="115" x2="175" y2="105" stroke="#f0a500" stroke-width="3" stroke-linecap="round"/>
+    <!-- Chain ring hint -->
+    <circle cx="165" cy="110" r="18" stroke="#f0a500" stroke-width="2" opacity="0.35"/>
+  </svg>
+
+  <h1>Cyclone Cycles</h1>
+  <p class="tagline">Houston's Neighborhood Bike Shop</p>
+
+  <div class="hero-address">
+    <strong>4215 Bellaire Blvd, Houston TX 77025</strong>
+    Mon–Fri 10am–7pm &nbsp;|&nbsp; Sat 10am–6pm &nbsp;|&nbsp; Sun Noon–4pm
+  </div>
+
+  <div class="cta-group">
+    <a href="tel:7136682104" class="btn btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      Call (713) 668-2104
+    </a>
+    <a href="#location" class="btn btn-outline">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+      Get Directions
+    </a>
+  </div>
+</section>
+
+<!-- ── Location & Map ── -->
+<section id="location">
+  <div class="container">
+    <p class="section-label">Find Us</p>
+    <h2>Our New Location</h2>
+    <div class="divider"></div>
+    <p>We moved about a month ago — if Google or Yelp sent you to the old Stella Link address, we're sorry! Come find us on Bellaire.</p>
+
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3466.0!2d-95.4364!3d29.7097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640e1234567890%3A0x0!2s4215+Bellaire+Blvd%2C+Houston%2C+TX+77025!5e0!3m2!1sen!2sus!4v1"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Cyclone Cycles map — 4215 Bellaire Blvd, Houston TX 77025"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="location-details">
+      <div class="location-card">
+        <h3>Address</h3>
+        <p>4215 Bellaire Blvd<br>Houston, TX 77025</p>
+        <a href="https://maps.google.com/?q=4215+Bellaire+Blvd+Houston+TX+77025" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+      </div>
+      <div class="location-card">
+        <h3>Hours</h3>
+        <p>
+          Mon – Fri: 10am – 7pm<br>
+          Saturday: 10am – 6pm<br>
+          Sunday: Noon – 4pm
+        </p>
+      </div>
+      <div class="location-card">
+        <h3>Contact</h3>
+        <p>
+          <a href="tel:7136682104">(713) 668-2104</a><br>
+          <a href="mailto:info@cyclonecycles.com">info@cyclonecycles.com</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Services ── -->
+<section id="services">
+  <div class="container">
+    <p class="section-label">What We Do</p>
+    <h2>Full-Service Bike Shop</h2>
+    <div class="divider"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🔧</span>
+        <h3>Repairs &amp; Tune-Ups</h3>
+        <p>From flat fixes to full overhauls. Quick turnarounds — often same day.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚲</span>
+        <h3>New Bikes</h3>
+        <p>Curated selection of quality bikes for every rider and budget.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">♻️</span>
+        <h3>Used Bikes</h3>
+        <p>Houston Press "Best Place to Get a Used Bicycle." Honest prices, great value.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚙️</span>
+        <h3>Parts &amp; Accessories</h3>
+        <p>Tubes, tires, helmets, locks, lights, and more in stock.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚡</span>
+        <h3>E-Bike Service</h3>
+        <p>Repair and maintenance for electric bikes. Battery and motor expertise.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💬</span>
+        <h3>Free Advice</h3>
+        <p>Mark has decades of experience. Come in with questions — he loves to talk bikes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Sunday Events ── -->
+<section id="sunday">
+  <div class="container">
+    <p class="section-label">Community</p>
+    <h2>Sunday Hangouts at the Shop</h2>
+    <div class="divider" style="background:var(--gold);"></div>
+    <div class="sunday-inner">
+      <div class="sunday-text">
+        <p>Most Sundays, Cyclone Cycles is more than a bike shop — it's a neighborhood gathering place. Stop by, roll in on your bike, and hang out with the community.</p>
+        <div class="sunday-highlight">
+          "Bring your bike, bring a friend. We'll fix it while the crawfish boil."
+        </div>
+      </div>
+      <div class="sunday-visual">
+        <div class="event-badge">
+          <span>🦞</span>
+          <div class="event-badge-text">
+            <strong>Crawfish Boils</strong>
+            <small>Most Sundays — come hungry</small>
+          </div>
+        </div>
+        <div class="event-badge">
+          <span>🔥</span>
+          <div class="event-badge-text">
+            <strong>BBQ Days</strong>
+            <small>Good food, great company</small>
+          </div>
+        </div>
+        <div class="event-badge">
+          <span>🚲</span>
+          <div class="event-badge-text">
+            <strong>Ride-Ins Welcome</strong>
+            <small>Drop off your bike while you chill</small>
+          </div>
+        </div>
+        <p style="color:#cfe8d5;font-size:0.85rem;margin-top:0.5rem;">Shop open Sun Noon–4pm · Events vary · Follow us or call ahead</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About Mark ── -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <h2>Meet Mark</h2>
+    <div class="divider"></div>
+    <div class="about-inner">
+      <div style="text-align:center;">
+        <div class="about-mark-icon">🧑‍🔧</div>
+        <div class="award-badge">
+          🏆 Houston Press Best Used Bicycle Shop 2011
+        </div>
+      </div>
+      <div>
+        <p style="font-size:1.05rem;margin-bottom:1rem;">Mark has been in the bicycle industry for decades. He opened Cyclone Cycles because he believes everyone deserves a good bike at a fair price — and that a local bike shop should feel like home.</p>
+        <p style="font-size:1.05rem;margin-bottom:1rem;">Don't be surprised if you come in for a tube and leave an hour later having learned more about bikes than you ever expected. That's just Mark.</p>
+        <div class="traits">
+          <span class="trait">Decades of experience</span>
+          <span class="trait">Fair pricing</span>
+          <span class="trait">Quick turnarounds</span>
+          <span class="trait">Honest advice</span>
+          <span class="trait">Community builder</span>
+          <span class="trait">Welcoming atmosphere</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Photo Gallery Placeholder ── -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-label">Gallery</p>
+    <h2>Photos</h2>
+    <div class="divider"></div>
+    <div class="gallery-placeholder">
+      <div style="font-size:3rem;margin-bottom:0.5rem;">📷</div>
+      <strong>Photos coming soon</strong>
+      <p>Drop photos into the <code>/photos/</code> folder and update this section.<br>Great shots: the shop floor, Sunday events, cool bikes in inventory.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Reviews CTA ── -->
+<section id="reviews">
+  <div class="container">
+    <div class="stars">★★★★★</div>
+    <h2>Love Cyclone Cycles?</h2>
+    <p>Reviews help other cyclists find us — especially now that we've moved. Takes 60 seconds and means a lot.</p>
+    <a href="https://search.google.com/local/writereview?placeid=PLACE_ID_HERE" target="_blank" rel="noopener" class="btn btn-white">
+      ★ Leave a Google Review
+    </a>
+    <p style="margin-top:1rem;font-size:0.85rem;opacity:0.8;">
+      <!-- Replace PLACE_ID_HERE above with the real Google Place ID from the Place ID Finder -->
+    </p>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Cyclone Cycles</h3>
+      <p>Houston's neighborhood bike shop.<br>Repairs, sales, and community.</p>
+    </div>
+    <div>
+      <h3>Location</h3>
+      <p>4215 Bellaire Blvd<br>Houston, TX 77025</p>
+    </div>
+    <div>
+      <h3>Hours</h3>
+      <p>Mon–Fri: 10am–7pm<br>Sat: 10am–6pm<br>Sun: Noon–4pm</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>
+        <a href="tel:7136682104">(713) 668-2104</a><br>
+        <a href="mailto:info@cyclonecycles.com">info@cyclonecycles.com</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; <span id="yr"></span> Cyclone Cycles &mdash; 4215 Bellaire Blvd, Houston TX 77025
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
