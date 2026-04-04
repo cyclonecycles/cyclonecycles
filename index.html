@@ -88,10 +88,15 @@
       0%, 100% { box-shadow: 0 0 0 0 rgba(240,165,0,0.5); }
       50%       { box-shadow: 0 0 0 8px rgba(240,165,0,0); }
     }
-    .hero-svg {
-      width: min(320px, 85vw);
+    .hero-img {
+      width: min(280px, 75vw);
+      height: min(360px, 50vw);
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 12px;
       margin: 0 auto 1.5rem;
       display: block;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
     #hero h1 {
       font-size: clamp(2.2rem, 7vw, 3.8rem);
@@ -434,42 +439,7 @@
 <section id="hero">
   <div class="new-location-banner">&#x1F4CD; New Location — We Moved!</div>
 
-  <!-- SVG Bicycle -->
-  <svg class="hero-svg" viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <!-- Rear wheel -->
-    <circle cx="90" cy="110" r="42" stroke="#f0a500" stroke-width="6"/>
-    <circle cx="90" cy="110" r="8" fill="#f0a500"/>
-    <!-- Front wheel -->
-    <circle cx="230" cy="110" r="42" stroke="#f0a500" stroke-width="6"/>
-    <circle cx="230" cy="110" r="8" fill="#f0a500"/>
-    <!-- Spokes rear -->
-    <line x1="90" y1="68" x2="90" y2="152" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
-    <line x1="48" y1="110" x2="132" y2="110" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
-    <line x1="60" y1="80" x2="120" y2="140" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
-    <line x1="120" y1="80" x2="60" y2="140" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
-    <!-- Spokes front -->
-    <line x1="230" y1="68" x2="230" y2="152" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
-    <line x1="188" y1="110" x2="272" y2="110" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
-    <line x1="200" y1="80" x2="260" y2="140" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
-    <line x1="260" y1="80" x2="200" y2="140" stroke="#f0a500" stroke-width="2" opacity="0.5"/>
-    <!-- Frame -->
-    <polyline points="90,110 140,55 195,110" stroke="white" stroke-width="6" stroke-linejoin="round" fill="none"/>
-    <line x1="140" y1="55" x2="230" y2="110" stroke="white" stroke-width="6"/>
-    <line x1="165" y1="110" x2="140" y2="55" stroke="white" stroke-width="6"/>
-    <!-- Seat tube -->
-    <line x1="165" y1="110" x2="160" y2="75" stroke="white" stroke-width="6"/>
-    <!-- Seat -->
-    <line x1="148" y1="73" x2="172" y2="73" stroke="#f0a500" stroke-width="5" stroke-linecap="round"/>
-    <!-- Handlebar stem -->
-    <line x1="220" y1="75" x2="230" y2="55" stroke="white" stroke-width="5"/>
-    <!-- Handlebars -->
-    <line x1="215" y1="53" x2="245" y2="53" stroke="#f0a500" stroke-width="5" stroke-linecap="round"/>
-    <!-- Crank/pedals -->
-    <circle cx="165" cy="110" r="10" stroke="#f0a500" stroke-width="4" fill="var(--green)"/>
-    <line x1="155" y1="115" x2="175" y2="105" stroke="#f0a500" stroke-width="3" stroke-linecap="round"/>
-    <!-- Chain ring hint -->
-    <circle cx="165" cy="110" r="18" stroke="#f0a500" stroke-width="2" opacity="0.35"/>
-  </svg>
+  <img src="photos/hero-bike.jpg" alt="A dark green city bicycle — the kind you'll find at Cyclone Cycles" class="hero-img" />
 
   <h1>Cyclone Cycles</h1>
   <p class="tagline">Houston's Neighborhood Bike Shop</p>
